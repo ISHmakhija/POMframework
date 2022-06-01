@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 public class EmailAFriendPage extends Utils
 {
 
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Locators<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
     //Locator for Build your own computer
     private By _emailAFriend = By.xpath("//div[@class='page-title']/h1");
 
@@ -25,7 +27,7 @@ public class EmailAFriendPage extends Utils
 
 
 
-
+//>>>>>>>>>>>>>>>>>>>>>>> Methods <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     //Method for assert verification of email a friend page for Build your own computer
     public void verificationAssertEmailAFriend()
