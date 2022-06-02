@@ -37,6 +37,8 @@ public class BuildYourOwnComputerPage extends Utils
     //Locator for shopping cart
     private By _shoppingCart = By.xpath("//span[@class=\"cart-label\"]");
 
+    //Locator for Assert point Build Your Own Computer
+    private By _VerificationBuildYourOwnComputer = By.xpath("//h1[contains(text(),'Build your own computer')]");
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> METHODS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
@@ -52,6 +54,14 @@ public class BuildYourOwnComputerPage extends Utils
     {
         //Enter friend's email address
         clickElement(_emailAFriend);
+    }
+
+    //Method for user verification on Build Your own computer.
+    public void verificationOfUserIsOnBuildYourOwnComputer()
+    {
+        //Assert Verification Point for correct product name
+        assertExpectedEqualsActual("Build your own computer",_VerificationBuildYourOwnComputer,"You are on the wrong product");
+
     }
 
     //Select 2.2Ghz Processor from dropdown

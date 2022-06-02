@@ -25,6 +25,11 @@ public class TestSuit extends BaseTest
 
     DesktopsPage desktopsPage = new DesktopsPage();
 
+    NotebooksClass notebooksClass = new NotebooksClass();
+
+    AppleMacBookClass appleMacBookClass= new AppleMacBookClass();
+
+    ShoppingCartClass shoppingCartClass= new ShoppingCartClass();
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   METHODS  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     //All your test cases
@@ -34,63 +39,48 @@ public class TestSuit extends BaseTest
     public void userShouldAbleToAddBuiltYourOwnComputerToShoppingCart()
     {
         //Click on computers on HOMEPAGE
-      //  clickElement(By.xpath("//ul[@class='top-menu notmobile']/li/a[@href='/computers']"));
         homePage.computers();
 
         //Assert Verification that user is on computers page
-        assertExpectedEqualsActual("Computers",By.xpath("//div[@class='page-title']/h1"),"You are not on computers page");
-
+        computersPage.verificationUserIsOnComputersPage();
 
         //Click on Desktop
-       // clickElement(By.xpath("//h2/a[@href='/desktops']"));
         computersPage.desktops();
 
 
         //Assert verification for user is on correct page
-        assertExpectedEqualsActual("Desktops",By.xpath("//div[@class='page-title']/h1"),"You are on wrong page");
+        desktopsPage.verificationUserOnDesktops();
 
         //Click on add to cart
-        //clickElement(By.xpath("//button[contains(@onclick,'/addproducttocart/catalog/1/1/1')]"));
         desktopsPage.addToCartButtonBuildYourOwnComputer();
 
 
-
         //Assert Verification Point for correct product name
-        assertExpectedEqualsActual("Build your own computer",By.xpath("//h1[contains(text(),'Build your own computer')]"),"You are on the wrong product");
+        buildYourOwnComputerPage.verificationOfUserIsOnBuildYourOwnComputer();
 
         //Select 2.2Ghz Processor from dropdown
-        //selectDropdownByValue(By.id("product_attribute_1"),"1");
         buildYourOwnComputerPage.processorSelection();
 
         //Select 2GB RAM from dropdown
-       // selectDropdownByValue(By.id("product_attribute_2"),"3");
         buildYourOwnComputerPage.ramSelection();
 
         //Click on HDD 320gb radio button
-       // clickElement(By.id("product_attribute_3_6"));
         buildYourOwnComputerPage.hddSelection();
 
         //Click on OS Vista Premium radio button
-       // clickElement(By.id("product_attribute_4_9"));
         buildYourOwnComputerPage.osVistaPremium();
 
         //Click on Acrobat reader Software
-       // clickElement(By.id("product_attribute_5_11"));
         buildYourOwnComputerPage.acrobatReaderSoftware();
 
         //Click on Total Commander
-        //clickElement(By.id("product_attribute_5_12"));
         buildYourOwnComputerPage.totalCommanderSoftware();
 
         //Click on Add to Cart button
-       // clickElement(By.xpath("//button[@id='add-to-cart-button-1']"));
         buildYourOwnComputerPage.addToCartButton();
-
-        //By.xpath("//div[@class='bar-notification success']")
 
 
         //Click on Shopping cart
-       // clickElement(By.xpath("//span[@class=\"cart-label\"]"));
         buildYourOwnComputerPage.shoppingCart();
 
         //Assert point to verify Shopping cart
@@ -174,7 +164,8 @@ public class TestSuit extends BaseTest
         homePage.clickOnRegisterLink();
 
         //Assert verification for register page
-        assertExpectedEqualsActual("Register",By.xpath("//div[@class='page-title']/h1"),"You are NOT on REGISTER page");
+        registerPage.verificationUserIsOnRegisterPage();
+
 
         //select on male radio button
         registerPage.maleRadioButton();
@@ -226,13 +217,11 @@ public class TestSuit extends BaseTest
         //Click on Vote button
         homePage.voteButton();
 
+        //Explicit waiting method for get text
+        driverWaitUntilGetText(10,By.id("block-poll-vote-error-1"),"Only registered users can vote.");
 
         //Assert verification for vote condition "Only registered users can vote."
-       //assertExpectedEqualsActual("Only registered users can vote.",By.xpath("//ul[@class='poll-options']/following::div[@class='poll-vote-error']"),"Its not matching");
-
-        String expectedMessage = "Only registered users can vote.";
-        String actualMessage = driver.findElement(By.id("block-poll-vote-error-1")).getText();
-        Assert.assertEquals(actualMessage,expectedMessage,"voting fail");
+        homePage.verificationOnlyRegisterUsersCanVote();
 
         //calling method for registration
         userShouldBeAbleToRegisterSuccessfully();
@@ -247,9 +236,59 @@ public class TestSuit extends BaseTest
         homePage.voteButton();
 
         //Assert verification that user has voted successfully
-        String expected = " vote(s)...";
-        String actual = driver.findElement(By.xpath("//span[@class='poll-total-votes']")).getText().replaceAll("\\d+","");
-        Assert.assertEquals(actual,expected,"this is wrong");
+        homePage.verificationUserVotedSuccessfully();
+
+    }
+
+    @Test
+    public void userShouldBeAbleToCheckoutAppleMacBookPro13Inches()
+    {
+
+
+        //click on computers
+        homePage.computers();
+
+        //Verification of computers page
+        computersPage.verificationUserIsOnComputersPage();
+
+        //click on notebooks
+        computersPage.notebooks();
+
+        //assert Verification user is on the notebooks page
+        notebooksClass.verificationForNotebooksPage();
+
+        //click on Apple MacBook Pro 13inch Add to cart Button
+        notebooksClass.appleMacBookPro13InchAddToCartButton();
+
+        //Assert Verification that user is on Apple MacBook Pro 13inch
+        appleMacBookClass.verificationUserOnAppleMacBookPro13inch();
+
+        //click on add to cart button for apple mac book pro
+        appleMacBookClass.addToCartAppleMacBookPro();
+
+        //Click on shopping cart
+        shoppingCartClass.shoppingCartClick();
+
+        //Assert Verification for shopping cart
+        shoppingCartClass.verificationUserOnShoppingCart();
+
+        //Assert verification Apple MacBook Pro 13-inch added to cart
+        shoppingCartClass.verificationOfAppleMacBookProAddedToCart();
+
+        //Explicit wait method for get text for Qty
+       // driverWaitUntilGetText(10,By.xpath("//input[@value='2']"),"2");
+
+        //driver click inside the qty box
+        //clickElement(By.xpath("//input[@value='2']"));
+
+        //Assert Verification of 2 Qty added in the shopping cart
+        //shoppingCartClass.verificationOfQty2InShoppingCart();
+
+        String expectedMessage = "2";
+        String actualMessage = driver.findElement(By.xpath("//input[@value='2']")).getText();
+        Assert.assertEquals(actualMessage,expectedMessage,"Qty is wrong");
+
+
 
 
 
