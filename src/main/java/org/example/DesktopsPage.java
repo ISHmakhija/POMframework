@@ -19,6 +19,15 @@ public class DesktopsPage extends Utils
 
     }
 
+    //Assert Method for user is on Desktop page
+
+    public void verificationUserOnDesktops()
+    {
+        //Assert verification for user is on correct page
+        assertExpectedEqualsActual("Desktops",By.xpath("//div[@class='page-title']/h1"),"You are on wrong page");
+
+    }
+
 
 
 

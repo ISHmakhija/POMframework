@@ -26,12 +26,22 @@ public class RegisterPage extends Utils
 
     private By _registerButton  = By.id("register-button");
 
+    //Locator for Assert verification register
+    private By _verificationOfRegisterPage = By.xpath("//div[@class='page-title']/h1");
+
 
 
 
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+    //Method for assert verification for user is on register page
+    public void verificationUserIsOnRegisterPage()
+    {
+        //Assert verification for register page
+        assertExpectedEqualsActual("Register", _verificationOfRegisterPage,"You are NOT on REGISTER page");
+
+    }
 
     //select on male radio button
     public void maleRadioButton()

@@ -111,6 +111,15 @@ public class Utils extends BasePage {
         wait.until(ExpectedConditions.elementToBeSelected(by));
     }
 
+    //Explicit method for get Text
+
+    public static void driverWaitUntilGetText (int time, By by, String textValue)
+    {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(time));
+        wait.until(ExpectedConditions.textToBe(by,textValue));
+
+    }
+
     //Method for select from dropdown menu by VALUE
 
     public static void selectDropdownByValue(By by,String value)

@@ -1,6 +1,7 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 
 
 public class HomePage extends Utils
@@ -33,6 +34,11 @@ public class HomePage extends Utils
     //Locator for Vote Button
     private By _voteButton = By.xpath("//button[@id='vote-poll-1']");
 
+    //Locator for verification only register user can vote
+    private By _verificationOnlyRegisterUserCanVote = By.id("block-poll-vote-error-1");
+
+    //Locator for verification
+    private By _verificationUserVotedSuccessfully = By.xpath("//span[@class='poll-total-votes']");
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> METHODS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -95,6 +101,24 @@ public class HomePage extends Utils
         clickElement(_voteButton);
     }
 
+    //Method for assert verification that user only register user can vote
+    public void verificationOnlyRegisterUsersCanVote ()
+    {
+        //Assert verification for vote condition "Only registered users can vote."
+        String expectedMessage = "Only registered users can vote.";
+        String actualMessage = driver.findElement(_verificationOnlyRegisterUserCanVote).getText();
+        Assert.assertEquals(actualMessage,expectedMessage,"voting fail");
+    }
 
+
+    //Method for assert verification for user voted successfully
+    public void verificationUserVotedSuccessfully ()
+    {
+        //Assert verification that user has voted successfully
+        String expected = " vote(s)...";
+        String actual = driver.findElement(_verificationUserVotedSuccessfully).getText().replaceAll("\\d+","");
+        Assert.assertEquals(actual,expected,"this is wrong");
+
+    }
 
 }
