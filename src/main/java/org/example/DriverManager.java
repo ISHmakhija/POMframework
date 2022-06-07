@@ -10,7 +10,11 @@ import java.time.Duration;
 public class DriverManager extends Utils {
 
     //>>>>>>>>>Declaring Global browser name with String<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<< main
     String browserName = "firefox";
+=======
+    String browserName = "edge";
+>>>>>>> local
 
 
     //>>>>>>>>>>>>>>>>Open & close Browser Method<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

@@ -34,6 +34,21 @@ public class HomePage extends Utils
     private By _voteButton = By.xpath("//button[@id='vote-poll-1']");
 
 
+    //Locator for FB nopeCommerce
+    private By _fbNopeCommerce = By.xpath("//a[@href='http://www.facebook.com/nopCommerce']");
+
+    //Locator for clicking on details button
+    private By _clickOnNopeCommerceReleaseDetailsButton = By.xpath(" //a[contains(text(),'nopCommerce new release!')]/following::div[2]");
+
+    //Locator for search input area
+    private By _searchInputBox = By.xpath("//input[@class='search-box-text ui-autocomplete-input']");
+
+    //Locator for search button
+    private By _searchButton = By.xpath("//button[@class='button-1 search-box-button']");
+
+
+
+
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> METHODS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     // click on register button method
@@ -43,6 +58,8 @@ public class HomePage extends Utils
         clickElement(_registerLink);
     }
 
+
+    //Method for Assert Verification User is on Homepage.
     public void verificationUserIsOnHomepage()
     {
         assertExpectedEqualsActual("Welcome to our store",_verificationUserIsOnHomepage,"User is NOT on HomePage");
@@ -97,4 +114,37 @@ public class HomePage extends Utils
 
 
 
-}
+
+    //Method for verification of Alert get text
+    public void verificationForAlertTextAndAccept()
+    {
+        alertMethodForGetText();
+    }
+
+    //method for clicking on facebook
+    public void fbNopeCommerce()
+    {
+     clickElement(_fbNopeCommerce);
+    }
+
+    //Method for clicking on New release Details Button
+    public void clickOnNewReleaseDetailsButton()
+    {
+        clickElement(_clickOnNopeCommerceReleaseDetailsButton);
+    }
+
+    //Method for sending search keys
+    public void nameTextInSearchBoxWithClickOnSearchButton(String name)
+    {
+        //send keys in search box
+        sendKeys(_searchInputBox,name);
+
+        //click on the search button
+        clickElement(_searchButton);
+    }
+
+
+
+    }
+
+

@@ -1,10 +1,7 @@
 package org.example;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,7 +10,10 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class Utils extends BasePage {
     ///////////////////////Static reusable methods////////////////////////////
@@ -120,7 +120,6 @@ public class Utils extends BasePage {
     }
 
     //Method for Assert Equals for comparing Actual v/s Expected Result
-
     public static void assertExpectedEqualsActual(String expected,By by,String errorMessage)
     {
         String expectedResult = expected;
@@ -129,7 +128,6 @@ public class Utils extends BasePage {
     }
 
     //Method for select from dropdown menu by Visible TEXT
-
     public static void selectDropdownByText(By by, String textValue)
     {
         Select dropdown = new Select(driver.findElement(by));
@@ -155,6 +153,46 @@ public class Utils extends BasePage {
             e.printStackTrace();
         }
 
+    }
+
+    //Method for alert GetText & Accept
+    public static void alertMethodForGetText ()
+    {
+        //Switching to Alert
+        Alert alert = driver.switchTo().alert();
+
+        //capturing alert message
+        String alertMessage = driver.switchTo().alert().getText();
+
+        System.out.println(alertMessage);
+
+        alert.getText();
+
+        alert.accept();
+    }
+
+    //Method for Alert Accept
+    public static void alertMethodForAccept ()
+    {
+        //Switching to alert
+        Alert alert = driver.switchTo().alert();
+
+        //accepting alert message/ pressing ok button
+        String alertMessage = driver.switchTo().alert().getText();
+
+        System.out.println(alertMessage);
+
+        alert.accept();
+
+
+    }
+
+    //Method for Assert equals URl
+    public static void assertVerificationWithUrl (String url,String errorMessage)
+    {
+        String expectMessage = url;
+        String actualMessage = driver.getCurrentUrl();
+        Assert.assertEquals(expectMessage,actualMessage,errorMessage);
     }
 
 

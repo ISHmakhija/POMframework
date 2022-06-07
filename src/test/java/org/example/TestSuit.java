@@ -2,8 +2,6 @@ package org.example;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -26,6 +24,11 @@ public class TestSuit extends BaseTest
     DesktopsPage desktopsPage = new DesktopsPage();
 
 
+    FaceBookPage faceBookPage = new FaceBookPage();
+
+    NewReleasePage newReleasePage = new NewReleasePage();
+
+    SearchResultPage searchResultPage = new SearchResultPage();
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   METHODS  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     //All your test cases
 
@@ -124,27 +127,24 @@ public class TestSuit extends BaseTest
 
         //Click on  Email a friend
         buildYourOwnComputerPage.emailAFriend();
-        //clickElement(By.xpath("//button[@class=\"button-2 email-a-friend-button\"]"));
+
 
         // Assert Verification for email a friend Page
-        assertExpectedEqualsActual("Email a friend",By.xpath("//div[@class='page-title']/h1"),"You are on wrong page");
+        emailAFriendPage.verificationAssertEmailAFriend();
 
         //Enter friend's email address
         emailAFriendPage.friendEmailAddress();
-        //sendKeys(By.xpath("//input[@id='FriendEmail']"),"ecoguru@gmail.com");
 
 
         //Enter Personal Message
         emailAFriendPage.personalMessage();
-        //sendKeys(By.xpath("//textarea[@class=\"your-email\"]"),"You can buy this product. Kind regards, Ish");
 
         //Click on SEND EMAIL button
         emailAFriendPage.sendEmail();
-      //  clickElement(By.xpath("//button[@name=\"send-email\"]"));
+
 
         //Assert Verification for message sent
-        assertExpectedEqualsActual("Your message has been sent.",By.xpath("//div[@class='result']"),"Your Email message has NOT sent to your friend");
-
+        emailAFriendPage.verificationEmailSentSuccessfully();
 
     }
 
@@ -214,7 +214,7 @@ public class TestSuit extends BaseTest
 
     }
 
-    @Test
+     @Test //User should be able to vote successfully
     public void userShouldBeAbleToVoteSuccessfully()
     {
         //Assert Point User is on HomePage
@@ -247,16 +247,177 @@ public class TestSuit extends BaseTest
         homePage.voteButton();
 
         //Assert verification that user has voted successfully
+<<<<<<< main
         String expected = " vote(s)...";
         String actual = driver.findElement(By.xpath("//span[@class='poll-total-votes']")).getText().replaceAll("\\d+","");
         Assert.assertEquals(actual,expected,"this is wrong");
+=======
+        homePage.verificationUserVotedSuccessfully();
+
+    }
+
+    @Test
+    public void userShouldBeAbleToCheckoutAppleMacBookPro13Inches()
+    {
 
 
+        //click on computers
+        homePage.computers();
+
+        //Verification of computers page
+        computersPage.verificationUserIsOnComputersPage();
+
+        //click on notebooks
+        computersPage.notebooks();
+
+        //assert Verification user is on the notebooks page
+        notebooksClass.verificationForNotebooksPage();
+
+        //click on Apple MacBook Pro 13inch Add to cart Button
+        notebooksClass.appleMacBookPro13InchAddToCartButton();
+
+        //Assert Verification that user is on Apple MacBook Pro 13inch
+        appleMacBookClass.verificationUserOnAppleMacBookPro13inch();
+
+        //click on add to cart button for apple mac book pro
+        appleMacBookClass.addToCartAppleMacBookPro();
+
+        //Click on shopping cart
+        shoppingCartClass.shoppingCartClick();
+
+        //Assert Verification for shopping cart
+        shoppingCartClass.verificationUserOnShoppingCart();
+
+        //Assert verification Apple MacBook Pro 13-inch added to cart
+        shoppingCartClass.verificationOfAppleMacBookProAddedToCart();
+
+
+        //Assert Verification of 2 Qty added in the shopping cart
+       String expectedMessage = "2";
+       String actualMessage = driver.findElement(By.xpath("//input[@class='qty-input']")).getAttribute("value");
+       Assert.assertEquals(actualMessage,expectedMessage,"Qty is wrong");
+
+
+    }
+
+    @Test //Test cases for clicking on vote button & clicking on OK button on Alert.
+    public void userShouldBeAbleToClickOnAlert()
+    {
+        //Assert Verification for user is on the homepage
+        homePage.verificationUserIsOnHomepage();
+
+        //click on vote button
+        homePage.voteButton();
+
+        //assert verification for the alert message
+        homePage.verificationForAlertTextAndAccept();
+>>>>>>> local
+
+    }
+
+    @Test //Test cases for FaceBook Demo NopeCommerce Page
+    public void userShouldBeAbleToNavigateToFBNopeCommercePage()
+    {
+        //verify user is on homepage(Assert verification)
+        homePage.verificationUserIsOnHomepage();
+
+        //Click on FB Demo nope commerce
+        homePage.fbNopeCommerce();
+
+        //Switching to FB page
+        faceBookPage.openFBNopeCommerceChildWindow();
+
+        //Assert verification for FB URL
+        faceBookPage.assertVerificationOfUrl();
+
+        //Closing FB tab
+        driver.close();
+
+    }
+
+    @Test //Comment on news release
+    public void userShouldBeAbleToCommentOnNopeCommerceNewRelease ()
+    {
+        //Assert Verification for Homepage
+        homePage.verificationUserIsOnHomepage();
+
+        //Click on New Release Detail Button
+        homePage.clickOnNewReleaseDetailsButton();
+
+        //Assert verification for url
+        newReleasePage.assertVerificationForURL();
+
+        //Assert Verification for get text
+        newReleasePage.assertVerificationForGetText();
+
+        //Send Keys to Title
+        newReleasePage.titleSendKeys();
+
+        //send keys to comment send keys
+        newReleasePage.commentSendKeys();
+
+        //Click on new comment button
+        newReleasePage.newCommentButton();
+
+        //Assert verification for comment successfully added message
+        newReleasePage.assertCommentAddedSuccessfully();
+
+        //Verification for Title written
+        newReleasePage.titleNameVerification();
+
+        //verification of comments left
+        newReleasePage.commentLeftVerification();
+
+
+    }
+
+    @Test //Test cases for user should be able to see desktops product from z to a sorted orders
+    public void userShouldBeAbleToSortDesktopsProductsFromZtoA ()
+    {
+        //Verification user is on homepage
+        homePage.verificationUserIsOnHomepage();
+
+        //Click on computers from homepage
+        homePage.computers();
+
+        //verification user is on computers page
+        computersPage.verificationUserIsOnComputersPage();
+
+        //Clicking on desktops from computers page
+        computersPage.desktops();
+
+        //verification user is on desktops page
+        desktopsPage.verificationUserOnDesktops();
+
+        //click on Sort by Name Z to A
+        desktopsPage.sortProductsByZtoAOption();
+
+        //Assert verification the products are sorted from z to a
+       desktopsPage.verificationMethodForProductsAreInZtoAOrder();
 
 
     }
 
 
+    @Test
+    public void userShouldBeAbleToSearchNikeProductFromSearchButton ()
+    {
+        //Assert verification user is on the homepage
+        homePage.verificationUserIsOnHomepage();
+
+        //Method for send keys and clicking
+        homePage.nameTextInSearchBoxWithClickOnSearchButton("nike");
+
+        //Assert Verification for user is on Nike result page
+        searchResultPage.assertUrlVerificationForNike("Nike");
+
+        //Assert Verification for display product contains Nike Word
+        searchResultPage.assertVerificationForProductsContainsNikeWord();
+
+
+
+
+    }
 
 
 }

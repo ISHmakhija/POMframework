@@ -20,6 +20,9 @@ public class EmailAFriendPage extends Utils
     //Locator for send email button
     private By _sendEmail = By.xpath("//button[@name=\"send-email\"]");
 
+    //Locator for assert verification for email message sent successfully
+    private By _verificationForEmailSentSuccessfully = By.xpath("//div[@class='result']");
+
 
 
 
@@ -31,7 +34,7 @@ public class EmailAFriendPage extends Utils
     public void verificationAssertEmailAFriend()
     {
         // Assert Verification for email a friend Page
-        assertExpectedEqualsActual("Email a Friend",_emailAFriend ,"You are on wrong page");
+        assertExpectedEqualsActual("Email a friend",_emailAFriend ,"You are on wrong page");
 
     }
 
@@ -54,7 +57,12 @@ public class EmailAFriendPage extends Utils
     clickElement(_sendEmail);
     }
 
-
+    //Method for assert verification for email being sent successfully
+    public void verificationEmailSentSuccessfully ()
+    {
+        //Assert Verification for message sent
+        assertExpectedEqualsActual("Your message has been sent.",_verificationForEmailSentSuccessfully,"Your verification fail for email message sent");
+    }
 
 
 
