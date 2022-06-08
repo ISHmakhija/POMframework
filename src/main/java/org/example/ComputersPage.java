@@ -22,6 +22,12 @@ public class ComputersPage extends Utils
     clickElement(_desktops);
     }
 
+    //Method for clicking on desktops
+    public void notebooks ()
+    {
+        clickElement(By.xpath("//div/a[@href='/notebooks']"));
+    }
+
     //Method for assert verification that user is on Computer page
     public void verificationUserIsOnComputersPage()
     {

@@ -27,6 +27,10 @@ public class TestSuit extends BaseTest
 
     NewReleasePage newReleasePage = new NewReleasePage();
 
+    NotebooksPage notebooksPage = new NotebooksPage();
+
+    ShoppingCartClass shoppingCartClass = new ShoppingCartClass();
+
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   METHODS  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     //All your test cases
 
@@ -264,29 +268,29 @@ public class TestSuit extends BaseTest
         //Verification of computers page
         computersPage.verificationUserIsOnComputersPage();
 
-//        //click on notebooks
-//        computersPage.notebooks();
-//
-//        //assert Verification user is on the notebooks page
-//        notebooksClass.verificationForNotebooksPage();
-//
-//        //click on Apple MacBook Pro 13inch Add to cart Button
-//        notebooksClass.appleMacBookPro13InchAddToCartButton();
-//
-//        //Assert Verification that user is on Apple MacBook Pro 13inch
-//        appleMacBookClass.verificationUserOnAppleMacBookPro13inch();
-//
-//        //click on add to cart button for apple mac book pro
-//        appleMacBookClass.addToCartAppleMacBookPro();
-//
-//        //Click on shopping cart
-//        shoppingCartClass.shoppingCartClick();
-//
-//        //Assert Verification for shopping cart
-//        shoppingCartClass.verificationUserOnShoppingCart();
-//
-//        //Assert verification Apple MacBook Pro 13-inch added to cart
-//        shoppingCartClass.verificationOfAppleMacBookProAddedToCart();
+          //click on notebooks
+           computersPage.notebooks();
+
+        //assert Verification user is on the notebooks page
+        notebooksPage.verificationForNotebooksPage();
+
+        //click on Apple MacBook Pro 13inch Add to cart Button
+        notebooksPage.appleMacBookPro13InchAddToCartButton();
+
+        //Assert Verification that user is on Apple MacBook Pro 13inch
+        notebooksPage.verificationUserOnAppleMacBookPro13inch();
+
+        //click on add to cart button for apple mac book pro
+        notebooksPage.addToCartAppleMacBookPro();
+
+        //Click on shopping cart
+        notebooksPage.shoppingCartClick();
+
+        //Assert Verification for shopping cart
+        shoppingCartClass.verificationUserOnShoppingCart();
+
+        //Assert verification Apple MacBook Pro 13-inch added to cart
+        shoppingCartClass.verificationOfAppleMacBookProAddedToCart();
 
 
         //Assert Verification of 2 Qty added in the shopping cart
@@ -407,7 +411,7 @@ public class TestSuit extends BaseTest
 
         //Method for searching ANY product from search bar including verification.
         homePage.productSearchFromSearchBarFromHomePage("Nike");
-        
+
     }
 
 
