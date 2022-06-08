@@ -23,12 +23,10 @@ public class TestSuit extends BaseTest
 
     DesktopsPage desktopsPage = new DesktopsPage();
 
-
     FaceBookPage faceBookPage = new FaceBookPage();
 
     NewReleasePage newReleasePage = new NewReleasePage();
 
-    SearchResultPage searchResultPage = new SearchResultPage();
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   METHODS  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     //All your test cases
 
@@ -228,11 +226,10 @@ public class TestSuit extends BaseTest
 
 
         //Assert verification for vote condition "Only registered users can vote."
-       //assertExpectedEqualsActual("Only registered users can vote.",By.xpath("//ul[@class='poll-options']/following::div[@class='poll-vote-error']"),"Its not matching");
 
         String expectedMessage = "Only registered users can vote.";
         String actualMessage = driver.findElement(By.id("block-poll-vote-error-1")).getText();
-        Assert.assertEquals(actualMessage,expectedMessage,"voting fail");
+        Assert.assertEquals(expectedMessage,actualMessage,"voting fail");
 
         //calling method for registration
         userShouldBeAbleToRegisterSuccessfully();
@@ -247,11 +244,11 @@ public class TestSuit extends BaseTest
         homePage.voteButton();
 
         //Assert verification that user has voted successfully
-<<<<<<< main
+
         String expected = " vote(s)...";
         String actual = driver.findElement(By.xpath("//span[@class='poll-total-votes']")).getText().replaceAll("\\d+","");
         Assert.assertEquals(actual,expected,"this is wrong");
-=======
+
         homePage.verificationUserVotedSuccessfully();
 
     }
@@ -267,29 +264,29 @@ public class TestSuit extends BaseTest
         //Verification of computers page
         computersPage.verificationUserIsOnComputersPage();
 
-        //click on notebooks
-        computersPage.notebooks();
-
-        //assert Verification user is on the notebooks page
-        notebooksClass.verificationForNotebooksPage();
-
-        //click on Apple MacBook Pro 13inch Add to cart Button
-        notebooksClass.appleMacBookPro13InchAddToCartButton();
-
-        //Assert Verification that user is on Apple MacBook Pro 13inch
-        appleMacBookClass.verificationUserOnAppleMacBookPro13inch();
-
-        //click on add to cart button for apple mac book pro
-        appleMacBookClass.addToCartAppleMacBookPro();
-
-        //Click on shopping cart
-        shoppingCartClass.shoppingCartClick();
-
-        //Assert Verification for shopping cart
-        shoppingCartClass.verificationUserOnShoppingCart();
-
-        //Assert verification Apple MacBook Pro 13-inch added to cart
-        shoppingCartClass.verificationOfAppleMacBookProAddedToCart();
+//        //click on notebooks
+//        computersPage.notebooks();
+//
+//        //assert Verification user is on the notebooks page
+//        notebooksClass.verificationForNotebooksPage();
+//
+//        //click on Apple MacBook Pro 13inch Add to cart Button
+//        notebooksClass.appleMacBookPro13InchAddToCartButton();
+//
+//        //Assert Verification that user is on Apple MacBook Pro 13inch
+//        appleMacBookClass.verificationUserOnAppleMacBookPro13inch();
+//
+//        //click on add to cart button for apple mac book pro
+//        appleMacBookClass.addToCartAppleMacBookPro();
+//
+//        //Click on shopping cart
+//        shoppingCartClass.shoppingCartClick();
+//
+//        //Assert Verification for shopping cart
+//        shoppingCartClass.verificationUserOnShoppingCart();
+//
+//        //Assert verification Apple MacBook Pro 13-inch added to cart
+//        shoppingCartClass.verificationOfAppleMacBookProAddedToCart();
 
 
         //Assert Verification of 2 Qty added in the shopping cart
@@ -311,7 +308,7 @@ public class TestSuit extends BaseTest
 
         //assert verification for the alert message
         homePage.verificationForAlertTextAndAccept();
->>>>>>> local
+
 
     }
 
@@ -368,6 +365,9 @@ public class TestSuit extends BaseTest
         //verification of comments left
         newReleasePage.commentLeftVerification();
 
+        //verification for comment present at the end
+        newReleasePage.m1();
+
 
     }
 
@@ -405,15 +405,8 @@ public class TestSuit extends BaseTest
         //Assert verification user is on the homepage
         homePage.verificationUserIsOnHomepage();
 
-        //Method for send keys and clicking
-        homePage.nameTextInSearchBoxWithClickOnSearchButton("nike");
-
-        //Assert Verification for user is on Nike result page
-        searchResultPage.assertUrlVerificationForNike("Nike");
-
-        //Assert Verification for display product contains Nike Word
-        searchResultPage.assertVerificationForProductsContainsNikeWord();
-
+        //Method for searching ANY product from search bar including verification.
+        homePage.productSearchFromSearchBarFromHomePage("Nike");
 
 
 

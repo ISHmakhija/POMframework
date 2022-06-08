@@ -3,10 +3,7 @@ package org.example;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.ArrayList;;
 import java.util.List;
 
 public class NewReleasePage extends Utils
@@ -48,7 +45,7 @@ public class NewReleasePage extends Utils
     //Send keys For Title
     public void titleSendKeys()
     {
-        sendKeys(_click,"Mr J.D");
+        sendKeys(_click,"MR BOMBASTIC");
     }
 
     //Method for send keys in comment area
@@ -126,6 +123,22 @@ public class NewReleasePage extends Utils
 
 
         Assert.assertTrue(afterTitleList.equals(beforeTitleList),"Your COMMENTS left in the comment section is NOT matching");
+
+    }
+
+
+    public void m1()
+    {
+        String title = "MR BOMBASTIC";
+        List<WebElement>comments = driver.findElements(By.xpath("//div[@class='comment-title']"));
+        List<String>listOfComments=new ArrayList<>();
+        for (WebElement e : comments){
+            listOfComments.add(e.getText());
+        }
+        Assert.assertTrue(listOfComments.contains(title));
+        String lastComment = listOfComments.get(listOfComments.size()-1);
+        System.out.println(lastComment);
+        Assert.assertEquals(lastComment,title,"Comments are not in order");
 
     }
 

@@ -1,6 +1,10 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+import java.util.List;
 
 
 public class HomePage extends Utils
@@ -45,6 +49,9 @@ public class HomePage extends Utils
 
     //Locator for search button
     private By _searchButton = By.xpath("//button[@class='button-1 search-box-button']");
+
+    //Locator for product tiltes
+    private By _productsTitles = By.xpath("//h2[@class='product-title']");
 
 
 
@@ -112,6 +119,17 @@ public class HomePage extends Utils
         clickElement(_voteButton);
     }
 
+    //Method for verification User Voted Successfully
+    public void verificationUserVotedSuccessfully()
+    {
+        String actualMessage = driver.findElement(By.xpath("//span[@class='poll-total-votes']")).getText().replaceAll("\\d+","");
+
+        String expectedMessage = " votes(s)...";
+
+        Assert.assertEquals(expectedMessage,actualMessage,"Not voted successfully");
+    }
+
+
 
 
 
@@ -133,14 +151,25 @@ public class HomePage extends Utils
         clickElement(_clickOnNopeCommerceReleaseDetailsButton);
     }
 
-    //Method for sending search keys
-    public void nameTextInSearchBoxWithClickOnSearchButton(String name)
+    //Method for searching any product in search box from homepage
+    public void productSearchFromSearchBarFromHomePage(String productName)
     {
         //send keys in search box
-        sendKeys(_searchInputBox,name);
+        sendKeys(_searchInputBox,productName);
 
         //click on the search button
         clickElement(_searchButton);
+
+        //verifying all products
+        List<WebElement> productTitles = driver.findElements(_productsTitles);
+        for (WebElement e : productTitles){
+            System.out.println(e.getText());
+            Assert.assertTrue(e.getText().contains(productName));
+        }
+
+        assertVerificationWithUrl("https://demo.nopcommerce.com/search?q="+productName,"You are on wrong page");
+
+
     }
 
 

@@ -22,6 +22,12 @@ public class ComputersPage extends Utils
     clickElement(_desktops);
     }
 
+    //Method for assert verification that user is on Computer page
+    public void verificationUserIsOnComputersPage()
+    {
+        assertVerificationWithUrl("https://demo.nopcommerce.com/computers","You are on wrong page");
+    }
+
 
 
 

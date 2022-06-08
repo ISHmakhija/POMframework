@@ -27,8 +27,6 @@ public class DesktopsPage extends Utils
 
     }
 
-<<<<<<< main
-=======
     //Assert Method for user is on Desktop page
     public void verificationUserOnDesktops()
     {
@@ -43,7 +41,7 @@ public class DesktopsPage extends Utils
         selectDropdownByValue(By.xpath("//select[@id='products-orderby']"),"6");
     }
 
->>>>>>> local
+
 
     //Method for product verification for products listed
     public void verificationMethodForProductsAreInZtoAOrder()
