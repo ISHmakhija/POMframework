@@ -407,9 +407,7 @@ public class TestSuit extends BaseTest
 
         //Method for searching ANY product from search bar including verification.
         homePage.productSearchFromSearchBarFromHomePage("Nike");
-
-
-
+        
     }
 
 
