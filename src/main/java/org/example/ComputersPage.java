@@ -28,6 +28,12 @@ public class ComputersPage extends Utils
         assertVerificationWithUrl("https://demo.nopcommerce.com/computers","You are on wrong page");
     }
 
+    //Method for clicking on Notebooks
+    public void notebooks()
+    {
+        clickElement(By.xpath("//h2/a[@href='/notebooks']"));
+    }
+
 
 
 
