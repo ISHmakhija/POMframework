@@ -41,7 +41,6 @@ public class TestSuit extends BaseTest
     public void userShouldAbleToAddBuiltYourOwnComputerToShoppingCart()
     {
         //Click on computers on HOMEPAGE
-      //  clickElement(By.xpath("//ul[@class='top-menu notmobile']/li/a[@href='/computers']"));
         homePage.computers();
 
         //Assert Verification that user is on computers page
@@ -49,7 +48,6 @@ public class TestSuit extends BaseTest
 
 
         //Click on Desktop
-       // clickElement(By.xpath("//h2/a[@href='/desktops']"));
         computersPage.desktops();
 
 
@@ -57,7 +55,6 @@ public class TestSuit extends BaseTest
         assertExpectedEqualsActual("Desktops",By.xpath("//div[@class='page-title']/h1"),"You are on wrong page");
 
         //Click on add to cart
-        //clickElement(By.xpath("//button[contains(@onclick,'/addproducttocart/catalog/1/1/1')]"));
         desktopsPage.addToCartButtonBuildYourOwnComputer();
 
 
@@ -66,23 +63,18 @@ public class TestSuit extends BaseTest
         assertExpectedEqualsActual("Build your own computer",By.xpath("//h1[contains(text(),'Build your own computer')]"),"You are on the wrong product");
 
         //Select 2.2Ghz Processor from dropdown
-        //selectDropdownByValue(By.id("product_attribute_1"),"1");
         buildYourOwnComputerPage.processorSelection();
 
         //Select 2GB RAM from dropdown
-       // selectDropdownByValue(By.id("product_attribute_2"),"3");
         buildYourOwnComputerPage.ramSelection();
 
         //Click on HDD 320gb radio button
-       // clickElement(By.id("product_attribute_3_6"));
         buildYourOwnComputerPage.hddSelection();
 
         //Click on OS Vista Premium radio button
-       // clickElement(By.id("product_attribute_4_9"));
         buildYourOwnComputerPage.osVistaPremium();
 
         //Click on Acrobat reader Software
-       // clickElement(By.id("product_attribute_5_11"));
         buildYourOwnComputerPage.acrobatReaderSoftware();
 
         //Click on Total Commander
@@ -90,14 +82,10 @@ public class TestSuit extends BaseTest
         buildYourOwnComputerPage.totalCommanderSoftware();
 
         //Click on Add to Cart button
-       // clickElement(By.xpath("//button[@id='add-to-cart-button-1']"));
         buildYourOwnComputerPage.addToCartButton();
-
-        //By.xpath("//div[@class='bar-notification success']")
 
 
         //Click on Shopping cart
-       // clickElement(By.xpath("//span[@class=\"cart-label\"]"));
         buildYourOwnComputerPage.shoppingCart();
 
         //Assert point to verify Shopping cart
@@ -117,14 +105,14 @@ public class TestSuit extends BaseTest
 
         //Click on NopCommerce logo for homepage
         homePage.nopeCommerceLogoClick();
-        //clickElement(By.xpath("//img[@alt=\"nopCommerce demo store\"]"));
+
 
         //Assert method for user is on correct page
         homePage.verificationUserIsOnHomepage();
 
         //Clicking on Build your own computer
         homePage.buildYourOwnComputerLink();
-        //clickElement(By.xpath("//h2/a[@href=\"/build-your-own-computer\"]"));
+
 
         //Assert Verification for build your own computer webpage
         buildYourOwnComputerPage.verificationAssertForBuildYourOwnComputerPage();
@@ -230,12 +218,10 @@ public class TestSuit extends BaseTest
         //Click on Vote button
         homePage.voteButton();
 
-
         //Assert verification for vote condition "Only registered users can vote."
-
         String expectedMessage = "Only registered users can vote.";
-        String actualMessage = driver.findElement(By.id("block-poll-vote-error-1")).getText();
-        Assert.assertEquals(expectedMessage,actualMessage,"voting fail");
+        String actualMessage = driver.findElement(By.xpath("//div[@id='block-poll-vote-error-1']")).getText();
+        Assert.assertEquals(actualMessage,expectedMessage,"Voting result failed");
 
         //calling method for registration
         userShouldBeAbleToRegisterSuccessfully();
@@ -255,6 +241,7 @@ public class TestSuit extends BaseTest
         String actual = driver.findElement(By.xpath("//span[@class='poll-total-votes']")).getText().replaceAll("\\d+","");
         Assert.assertEquals(actual,expected,"this is wrong");
 
+        //Method for verification, user is on home page
         homePage.verificationUserVotedSuccessfully();
 
     }
@@ -371,7 +358,7 @@ public class TestSuit extends BaseTest
         newReleasePage.commentLeftVerification();
 
         //verification for comment present at the end
-        newReleasePage.m1();
+        newReleasePage.titleVerificationMethodForCommentsPage();
 
 
     }

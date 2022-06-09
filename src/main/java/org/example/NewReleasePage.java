@@ -127,7 +127,8 @@ public class NewReleasePage extends Utils
     }
 
 
-    public void m1()
+    //Method for verification of Title at last
+    public void titleVerificationMethodForCommentsPage()
     {
         String title = "MR BOMBASTIC";
         List<WebElement>comments = driver.findElements(By.xpath("//div[@class='comment-title']"));
