@@ -27,6 +27,7 @@ public class DriverManager extends Utils {
     String browserName = System.getProperty("browser");
 
 
+    
     //>>>>>>>>>>>>>>>>Open & close Browser Method<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     public void openBrowser() {
         //making decision cloud true or false
